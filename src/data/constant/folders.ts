@@ -1,0 +1,1 @@
+export const foldersConstant = ['/screen', '/widget', '/data', '/data/model', '/data/repo', '/data/service', '/data/constant'];

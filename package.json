@@ -17,7 +17,7 @@
 		"commands": [
 			{
 				"command": "handy-flutter-module-generator.getx",
-				"title": "📝 [HFMG] Generate a new module with GetX"
+				"title": "⚔️ [HFMG] Generate a new module with GetX"
 			}
 		],
 		"menus": {

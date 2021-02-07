@@ -1,69 +1,37 @@
+import { UserInputModel } from './data/model/userinputmodel';
 import * as vscode from 'vscode';
 import * as mkdirp from 'mkdirp';
 import fs = require('fs');
+import { camelize } from './utils/stringutils';
+import { getUserInput } from './getuserinput';
+import { foldersConstant } from './data/constant/folders';
 
-interface BooleanQuickPickItem extends vscode.QuickPickItem { value: boolean }
+
 
 export async function generateGetx(inUri: vscode.Uri | undefined) {
-    // The code you place here will be executed every time your command is executed
-
-    // Display a message box to the user
-    const nameOpts: vscode.InputBoxOptions = {
-        prompt: "New Module Name",
-        validateInput: async (value) => {
-            return /^[0-9a-z]+$/g.test(value) ? null : "It is not a valid module name !";
-        }
-
-    };
-    const name = await vscode.window.showInputBox(nameOpts);
-    if (name === undefined) {
-        vscode.window.showErrorMessage("Aborted");
-        return;
+    let data:UserInputModel;
+    try {
+        data = await getUserInput(inUri);
+    } catch (error) {
+        return vscode.window.showErrorMessage((error as Error).message);
     }
-
-    const isInit: readonly BooleanQuickPickItem[] = await new Promise((res) => {
-        const quickpick = vscode.window.createQuickPick<BooleanQuickPickItem>();
-        const items = [{ label: "Yes", value: true }, { label: "No", value: false }];
-        quickpick.title = "Is Controller has been initialized before?";
-        quickpick.items = items;
-        quickpick.onDidAccept(() => quickpick.hide());
-        quickpick.onDidHide(() => { res(quickpick.selectedItems); quickpick.dispose(); });
-        quickpick.show();
-    });
-
-    if (isInit === undefined || isInit.length === 0) {
-        vscode.window.showErrorMessage("Aborted");
-        return;
-    }
-    const openOpts: vscode.OpenDialogOptions = { canSelectMany: false, canSelectFiles: false, canSelectFolders: true };
-
-    var uri: vscode.Uri;
-
-    if (inUri === undefined) {
-        const userUri = await vscode.window.showOpenDialog(openOpts);
-        if (userUri === undefined) {
-            vscode.window.showErrorMessage("Aborted");
-            return;
-        }
-        uri = userUri[0];
-    } else {
-        uri = inUri;
-    }
-
-
-
-    await generateGetxFolders(uri, name, isInit[0].value);
-    vscode.window.showInformationMessage("Successfully created new module " + camelize(name));
+  
+    await generateGetxFolders(data.uri, data.name, data.isAlreadyInit);
+    vscode.window.showInformationMessage("Successfully created new MODULE " + camelize(data.name));
 }
 
 
 
 
 async function generateGetxFolders(uri: vscode.Uri, name: string, isAlreadyInit: boolean) {
-    const d = uri.path + "/" + name;
+    const nameWithoutSpace = name.replace(" ", "");
+
+    const d = uri.path + "/" + nameWithoutSpace;
     await mkdirp(d);
 
-    const folders = ['/screen', '/controller', '/widget', '/data', '/data/model', '/data/repo', '/data/service', '/data/constant'];
+    const folders = foldersConstant;
+
+    folders.push('/controller');
 
     for (const data of folders) {
         const newp = d + data;
@@ -71,12 +39,12 @@ async function generateGetxFolders(uri: vscode.Uri, name: string, isAlreadyInit:
         await mkdirp(newp);
 
         if (data === '/controller') {
-            const controllerFileName = `${newp}/${name}controller.dart`;
+            const controllerFileName = `${newp}/${nameWithoutSpace}controller.dart`;
             fs.writeFileSync(controllerFileName, controllerContent(name));
         }
 
         if (data === '/screen') {
-            const screenFileName = `${newp}/${name}screen.dart`;
+            const screenFileName = `${newp}/${nameWithoutSpace}screen.dart`;
             fs.writeFileSync(screenFileName, screenContent(name, isAlreadyInit));
         }
     }
@@ -131,9 +99,3 @@ class ${camel}Screen extends StatelessWidget {
     return isAlreadyInit ? content : contentWithInit;
 }
 
-function camelize(str: String) {
-    return str.replace(/^([a-z])|((?:[\s_])[a-z])/g, function (match, _index) {
-        if (+match === 0) { return ""; } // or if (/\s+/.test(match)) for white spaces
-        return match.toUpperCase().replace(/[\s_]/g, (_, __) => "");
-    });
-}
