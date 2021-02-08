@@ -18,19 +18,32 @@
 			{
 				"command": "handy-flutter-module-generator.getx",
 				"title": "⚔️ [HFMG] Generate a new module with GetX"
+			},
+			{
+				"command": "handy-flutter-module-generator.provider",
+				"title": "🗡️ [HFMG] Generate a new module with Provider"
 			}
 		],
 		"menus": {
 			"commandPalette": [
 				{
 					"command": "handy-flutter-module-generator.getx",
-					"when": "false"
+					"when": "editorLangId == dart"
+				},
+				{
+					"command": "handy-flutter-module-generator.provider",
+					"when": "editorLangId == dart"
 				}
 			],
 			"explorer/context": [
 				{
 					"when": "explorerResourceIsFolder",
 					"command": "handy-flutter-module-generator.getx",
+					"group": "z_commands"
+				},
+				{
+					"when": "explorerResourceIsFolder",
+					"command": "handy-flutter-module-generator.provider",
 					"group": "z_commands"
 				}
 			]
