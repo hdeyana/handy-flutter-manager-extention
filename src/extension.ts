@@ -1,7 +1,7 @@
 
 import * as vscode from 'vscode';
-import { generateGetx } from './getxgenerator';
-import { generateProvider } from './providergenerator';
+import { generateGetx } from './module/getxgenerator';
+import { generateProvider } from './module/providergenerator';
 
 
 export function activate(context: vscode.ExtensionContext) {

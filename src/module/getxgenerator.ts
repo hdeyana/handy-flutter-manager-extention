@@ -1,10 +1,10 @@
-import { UserInputModel } from './data/model/userinputmodel';
+import { UserInputModel } from '../data/model/userinputmodel';
 import * as vscode from 'vscode';
 import * as mkdirp from 'mkdirp';
 import fs = require('fs');
-import { camelize } from './utils/stringutils';
-import { getUserInput } from './getuserinput';
-import { foldersConstant } from './data/constant/folders';
+import { camelize } from '../utils/stringutils';
+import { getUserInput } from '../utils/getuserinputformodule';
+import { foldersConstant } from '../data/constant/folders';
 
 
 

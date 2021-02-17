@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { UserInputModel } from './data/model/userinputmodel';
+import { UserInputModel } from '../data/model/userinputmodel';
 
 
 interface BooleanQuickPickItem extends vscode.QuickPickItem { value: boolean }
