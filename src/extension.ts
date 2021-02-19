@@ -1,4 +1,3 @@
-
 import * as vscode from 'vscode';
 import { createNewWidget } from './module/createnewwidget';
 import { generateGetx } from './module/getxgenerator';
