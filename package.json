@@ -1,5 +1,5 @@
 {
-	"name": "handy-flutter-module-generator",
+	"name": "handy-flutter-manager",
 	"displayName": "Handy Flutter Module Generator",
 	"description": "later",
 	"version": "0.0.1",
@@ -10,40 +10,55 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:handy-flutter-module-generator.getx"
+		"onCommand:handy-flutter-manager.getx",
+		"onCommand:handy-flutter-manager.provider",
+		"onCommand:handy-flutter-manager.widget"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "handy-flutter-module-generator.getx",
-				"title": "⚔️ [HFMG] Generate a new module with GetX"
+				"command": "handy-flutter-manager.getx",
+				"title": "[HFM] ⚔️ Generate a new module with GetX"
 			},
 			{
-				"command": "handy-flutter-module-generator.provider",
-				"title": "🗡️ [HFMG] Generate a new module with Provider"
+				"command": "handy-flutter-manager.provider",
+				"title": "[HFM] 🗡️  Generate a new module with Provider"
+			},
+			{
+				"command": "handy-flutter-manager.widget",
+				"title": "[HFM] 🍚 Create new Widget"
 			}
 		],
 		"menus": {
 			"commandPalette": [
 				{
-					"command": "handy-flutter-module-generator.getx",
+					"command": "handy-flutter-manager.getx",
 					"when": "editorLangId == dart"
 				},
 				{
-					"command": "handy-flutter-module-generator.provider",
+					"command": "handy-flutter-manager.provider",
+					"when": "editorLangId == dart"
+				},
+				{
+					"command": "handy-flutter-manager.widget",
 					"when": "editorLangId == dart"
 				}
 			],
 			"explorer/context": [
 				{
 					"when": "explorerResourceIsFolder",
-					"command": "handy-flutter-module-generator.getx",
+					"command": "handy-flutter-manager.getx",
 					"group": "z_commands"
 				},
 				{
 					"when": "explorerResourceIsFolder",
-					"command": "handy-flutter-module-generator.provider",
+					"command": "handy-flutter-manager.provider",
+					"group": "z_commands"
+				},
+				{
+					"when": "explorerResourceIsFolder",
+					"command": "handy-flutter-manager.widget",
 					"group": "z_commands"
 				}
 			]

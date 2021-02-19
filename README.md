@@ -1,6 +1,6 @@
-# handy-flutter-module-generator README
+# handy-flutter-manager README
 
-This is the README for your extension "handy-flutter-module-generator". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "handy-flutter-manager". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
