@@ -17,6 +17,7 @@ Extention are created to the way to :
 - [Coming] Environment Editor
 - [Coming] Assets Static File Generator
 - [Coming] ARB Editor for Intl
+- [Coming] Create Project and common Boilerplate
 
 ## Module Generator
 later

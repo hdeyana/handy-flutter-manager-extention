@@ -1,11 +1,19 @@
 {
 	"name": "handy-flutter-manager",
 	"displayName": "Handy Flutter Manager",
-	"icon": "https://raw.githubusercontent.com/hdeyana/handy-flutter-manager-extention/master/assets/logo_128.png",
-	"description": "later",
+	"author": {
+		"name": "Handi Deyana",
+		"email": "h.deyana@gmail.com"
+	},
+	"publisher": "HDeyana",
+	"repository": {
+		"url": "https://github.com/hdeyana/handy-flutter-manager-extention"
+	},
+	"icon": "assets/logo_128.png",
+	"description": "Opiniated Flutter Project Manager",
 	"version": "0.0.1",
 	"engines": {
-		"vscode": "^1.50.0"
+		"vscode": "^1.53.0"
 	},
 	"categories": [
 		"Other"
