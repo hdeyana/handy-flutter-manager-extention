@@ -5,6 +5,11 @@
   <p align="center"><i>Opiniated Flutter Project VSCode Extention</i></p>
 </p>
 
+Extention are created to the way to :
+- Simplify and Unified way of structure code
+- Ease to write
+- Minimize the learning curve
+
 ## Features
 
 - Module Generator
@@ -14,4 +19,9 @@
 - [Coming] ARB Editor for Intl
 
 ## Module Generator
+later
+
+## Widget File Creator
+later
+
 
